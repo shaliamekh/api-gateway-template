@@ -1,0 +1,37 @@
+---
+services:
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: api_gateway
+    command: ["uvicorn", "drivers.rest.main:app", "--host", "0.0.0.0", "--reload"]
+    volumes:
+      - ./api_gateway/src:/home/api-gateway-user/src
+    ports:
+      - 8010:8000
+    environment:
+      ENV: local
+      JWT_SECRET_KEY: supersecret
+    networks:
+      - template-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "localhost:8000/healthcheck"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+  service-a:
+    container_name: service-a
+    build:
+      context: service_a
+    environment:
+      JWT_SECRET_KEY: supersecret
+    networks:
+      - template-network
+  service-b:
+    container_name: service-b
+    build:
+      context: service_b
+    networks:
+      - template-network
+networks:
+  template-network:

@@ -1,0 +1,31 @@
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.mypy]
+strict = true
+plugins = [ "pydantic.mypy" ]
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_incomplete_defs = false
+disallow_untyped_defs = false
+
+[tool.ruff.format]
+skip-magic-trailing-comma = true
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+    "T201", # flake8-print
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long, handled by black
+]
+

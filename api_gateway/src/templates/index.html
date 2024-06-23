@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Gateway Template</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 900px;
+            height: 600px;
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            transform: translate(-50%, -50%) rotate(25deg);
+            z-index: 1;
+        }
+        .container {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            text-align: center;
+            z-index: 2;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        p {
+            font-size: 1.1em;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .social-icons {
+            margin-top: 20px;
+        }
+        .social-icons a {
+            margin: 0 15px;
+            display: inline-block;
+            color: #333;
+            font-size: 1.5em;
+        }
+        .social-icons a:hover {
+            color: #007BFF;
+        }
+        .logo {
+            font-size: 3em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <div class="logo">
+            <i class="fa-solid fa-code"></i>
+        </div>
+        <h1>Welcome to the API Gateway Template</h1>
+        <p>Developed by: <strong>Raman Shaliamekh</strong></p>
+        <p>
+            This API Gateway Template can be used as a single entry point for all your microservices,
+            providing a unified interface to interact with multiple backend services.
+            It efficiently manages and routes client requests to the appropriate microservices,
+            ensuring seamless communication and integration.
+            Each microservice has its own Swagger documentation, which can be accessed through the links below:
+        </p>
+        <ul>
+            {%- for service in services %}
+            <li>
+                <h3>{{ service.name }}</h3>
+                <a href="{{  api_gateway_url  }}/{{ service.slag }}/docs">Swagger Documentation</a>
+            </li>
+            {%- endfor %}
+        </ul>
+        <div class="social-icons">
+            <a href="https://github.com/shaliamekh" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://medium.com/@shaliamekh" target="_blank"><i class="fab fa-medium"></i></a>
+            <a href="https://www.linkedin.com/in/shaliamekh/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+</body>
+</html>
