@@ -14,7 +14,7 @@ class BaseSettings(PydanticBaseSettings):
     env: EnvType
     api_gateway_url: str = "http://localhost:8010"
     service_a_url: str = "http://service-a:8000"
-    service_b_url: str = "http://service-b:8000"
+    service_b_url: str = "http://service-b:8080"
     log_level: int = logging.DEBUG
     jwt_secret_key: SecretStr = SecretStr("")
     jwt_algorithm: str = "HS256"
