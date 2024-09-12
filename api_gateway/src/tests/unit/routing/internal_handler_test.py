@@ -22,5 +22,5 @@ async def test_internal_router_is_called(
 ):
     headers = {"Authorization": f"Bearer {create_jwt()}"}
     response = await async_client.request(method, path, headers=headers)
-    assert response.status_code == HTTPStatus.UNAUTHORIZED
-    assert response.json() == {"detail": "Not authorized"}
+    assert response.status_code == HTTPStatus.FORBIDDEN
+    assert response.json() == {"detail": "Forbidden"}

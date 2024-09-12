@@ -7,7 +7,7 @@ from drivers.rest.dependencies.security import validate_token
 from drivers.rest.utils.api_router import APIRouter
 from drivers.rest.utils.http_methods import ALL_METHODS
 from ports.gateway_router import GatewayRouter
-from use_cases.exceptions import NotAuthorizedException
+from use_cases.exceptions import ForbiddenException
 
 router = APIRouter()
 
@@ -16,7 +16,7 @@ router = APIRouter()
     "/{service}/internal/{path:path}/", methods=ALL_METHODS, response_model=None
 )
 async def internal_handler() -> NoReturn:
-    raise NotAuthorizedException
+    raise ForbiddenException
 
 
 @router.api_route(

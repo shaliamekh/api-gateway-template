@@ -13,3 +13,8 @@ class InvalidJWTException(NotAuthorizedException):
 
 class JWTClaimsMissingException(NotAuthorizedException):
     pass
+
+
+class ForbiddenException(Exception):
+    def __str__(self) -> str:
+        return "Forbidden"

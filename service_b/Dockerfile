@@ -10,10 +10,10 @@ COPY . .
 
 RUN go build -o main .
 
-FROM alpine:latest
+FROM alpine:3.20.3
 
-ENV USER=api-gateway-user \
-    APP_DIR=/home/$USER
+ENV USER=api-gateway-user
+ENV APP_DIR=/home/$USER
 
 RUN addgroup -S $USER && adduser -S $USER -G $USER
 
